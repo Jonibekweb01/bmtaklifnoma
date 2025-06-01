@@ -9,6 +9,13 @@
       href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Libre+Baskerville&family=Playfair+Display&family=Mea+Culpa&display=swap"
       rel="stylesheet"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
     <style>
       * {
         box-sizing: border-box;
@@ -21,6 +28,7 @@
         color: #333;
         padding: 20px;
       }
+
       .fade-in {
         opacity: 0;
         transform: translateY(30px);
@@ -30,22 +38,46 @@
         opacity: 1;
         transform: translateY(0);
       }
+
       header {
         text-align: center;
         padding: 20px 10px;
       }
+
       .hero-image {
+        position: relative;
         width: 100%;
         max-width: 800px;
         margin: 0 auto;
         border-radius: 15px;
         overflow: hidden;
       }
+
       .hero-image img {
         width: 100%;
         height: auto;
         display: block;
       }
+
+      #play-music {
+        position: absolute;
+        bottom: 15px;
+        right: 15px;
+        font-size: 24px;
+        background-color: #ffffffcc;
+        border: none;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+        cursor: pointer;
+        transition: background 0.3s;
+      }
+
+      #play-music:hover {
+        background-color: #fff;
+      }
+
       header h1 {
         font-family: "Great Vibes", cursive;
         font-size: 3.2em;
@@ -57,6 +89,7 @@
         font-size: 1.3em;
         margin-top: 10px;
       }
+
       .section {
         max-width: 700px;
         margin: 30px auto;
@@ -65,6 +98,7 @@
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
         padding: 20px;
       }
+
       .section h2 {
         font-size: 1.7em;
         color: #5d4037;
@@ -72,11 +106,13 @@
         font-weight: bold;
         font-family: "Mea Culpa", cursive;
       }
+
       .section p {
         line-height: 1.75;
         font-size: 1.05em;
         font-family: "Mea Culpa", cursive;
       }
+
       .highlight {
         background-color: #f9f4f0;
         padding: 12px 15px;
@@ -86,18 +122,21 @@
         font-style: italic;
         font-family: "Playfair Display", serif;
       }
+
       .gallery {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
         gap: 15px;
         margin-top: 20px;
       }
+
       .gallery img {
         width: 100%;
         height: 200px;
         object-fit: cover;
         border-radius: 10px;
       }
+
       footer {
         text-align: center;
         margin-top: 40px;
@@ -106,21 +145,37 @@
         font-style: italic;
         font-family: "Playfair Display", serif;
       }
+
       .classic-text {
         font-family: "Mea Culpa", cursive;
+      }
+
+      /* Responsive uchun */
+      @media (max-width: 500px) {
+        #play-music {
+          width: 40px;
+          height: 40px;
+          font-size: 20px;
+          bottom: 10px;
+          right: 10px;
+        }
       }
     </style>
   </head>
   <body>
-    <audio autoplay loop>
-      <source src="./Ed-Sheeran-Perfect-minus.mp3" type="audio/mpeg" />
+    <!-- Rasm va tugma -->
+    <div class="hero-image fade-in">
+      <img src="invite.jpg" alt="Boirxon va Munisa to'y rasmi" />
+      <button id="play-music" style="padding: 0 0 0 3px;"><i class="fa-solid fa-play"></i></button>
+    </div>
+
+    <!-- Audio -->
+    <audio id="background-audio" loop>
+      <source src="./Ed SHeerah-Perfect minus.mp3" type="audio/mpeg" />
       Brauzeringiz audio fayllarni qo‘llab-quvvatlamaydi.
     </audio>
 
-    <div class="hero-image fade-in">
-      <img src="invite.jpg" alt="Boirxon va Munisa to'y rasmi" />
-    </div>
-
+    <!-- Sarlavha -->
     <header class="fade-in">
       <h1 style="font-family: Mea Culpa, cursive">Boirxon & Munisaxon</h1>
       <p style="font-family: Mea Culpa, cursive">
@@ -128,6 +183,7 @@
       </p>
     </header>
 
+    <!-- Taklif -->
     <div class="section fade-in">
       <h2>To'yga Taklif Etamiz</h2>
       <p>
@@ -148,6 +204,7 @@
       </div>
     </div>
 
+    <!-- Qadrli mehmon -->
     <div class="section fade-in">
       <h2>Qadrli Mehmon Uchun</h2>
       <p class="classic-text">
@@ -158,6 +215,7 @@
       </p>
     </div>
 
+    <!-- Foto Lavhalar -->
     <div class="section fade-in">
       <h2>Foto Lavhalar</h2>
       <div class="gallery">
@@ -178,6 +236,7 @@
       </p>
     </div>
 
+    <!-- Footer -->
     <footer class="fade-in">
       <p>
         Boirxon & Munisa bilan baxtimizga guvoh bo‘ling — sizsiz bu kun to‘liq
@@ -185,16 +244,22 @@
       </p>
     </footer>
 
+    <!-- Script -->
     <script>
-      // Musiqa autoplay (fallback bilan)
-      window.addEventListener("DOMContentLoaded", function () {
-        const audio = document.querySelector("audio");
-        audio.play().catch(function (error) {
-          console.log("Autoplay bloklandi:", error);
-        });
+      const playButton = document.getElementById("play-music");
+      const audio = document.getElementById("background-audio");
+
+      playButton.addEventListener("click", () => {
+        audio
+          .play()
+          .then(() => {
+            playButton.style.display = "none";
+          })
+          .catch((err) => {
+            console.log("Audio ijrosida xatolik:", err);
+          });
       });
 
-      // Scroll animatsiya funksiyasi
       const observer = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
@@ -204,9 +269,7 @@
             }
           });
         },
-        {
-          threshold: 0.1,
-        }
+        { threshold: 0.1 }
       );
 
       document
