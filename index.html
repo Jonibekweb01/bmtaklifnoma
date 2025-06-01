@@ -4,12 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Boirxon & Munisa To'y Taklifnomasi</title>
-    <link
-      rel="icon"
-      href="./LOGO.jpg"
-      type="image/x-icon"
-    />
-
+    <link rel="icon" href="./LOGO.jpg" type="image/x-icon" />
     <link
       href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Libre+Baskerville&family=Playfair+Display&family=Mea+Culpa&display=swap"
       rel="stylesheet"
@@ -25,6 +20,15 @@
         background: linear-gradient(to bottom, #fafafa, #eae7dc);
         color: #333;
         padding: 20px;
+      }
+      .fade-in {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 2s ease-out;
+      }
+      .fade-in.visible {
+        opacity: 1;
+        transform: translateY(0);
       }
       header {
         text-align: center;
@@ -108,40 +112,43 @@
     </style>
   </head>
   <body>
-    <div class="hero-image">
+    <audio autoplay loop>
+      <source src="./Ed-Sheeran-Perfect-minus.mp3" type="audio/mpeg" />
+      Brauzeringiz audio fayllarni qo‘llab-quvvatlamaydi.
+    </audio>
+
+    <div class="hero-image fade-in">
       <img src="invite.jpg" alt="Boirxon va Munisa to'y rasmi" />
     </div>
 
-    <header>
-      <h1>Boirxon & Munisaxon</h1>
-      <p>
+    <header class="fade-in">
+      <h1 style="font-family: Mea Culpa, cursive;">Boirxon & Munisaxon</h1>
+      <p style="font-family: Mea Culpa, cursive;"> 
         Yuragingizga iliqlik baxsh etuvchi unutilmas kunimizga hush kelibsiz!
       </p>
     </header>
 
-    <div class="section">
+    <div class="section fade-in">
       <h2>To'yga Taklif Etamiz</h2>
       <p>
         Aziz do‘stlar va yaqinlar!<br /><br />
         Biz, Boirxon va Munisa, hayotimizdagi eng baxtli kunimizni siz bilan
         baham ko‘rmoqchimiz. Marhamat qilib, quvonchli kunimizda mehmonimiz
         bo‘ling!
-        <br /><br />
-        <p style="font-family: sans-serif; font-size: 13px;">
-
-        📅 Sana: <strong>2025-yil 29-iyun</strong><br />
+      </p>
+      <p style="font-family: sans-serif; font-size: 13px">
+        🗕 Sana: <strong>2025-yil 29-iyun</strong><br />
         🕓 Vaqt: <strong>Soat 17:00 dan boshlab</strong><br />
         📍 Manzil:
         <strong>Namanagan viloyati, Chust shahri, Banket zali</strong>
-        </p>
       </p>
       <div class="highlight">
-        Marosim aniq soat 16:00 da boshlanadi. Sizni vaqtida kutib olishdan
+        Marosim aniq soat 17:00 da boshlanadi. Sizni vaqtida kutib olishdan
         mamnun bo‘lamiz!
       </div>
     </div>
 
-    <div class="section">
+    <div class="section fade-in">
       <h2>Qadrli Mehmon Uchun</h2>
       <p class="classic-text">
         Ushbu kun biz uchun juda qadrli. Shunday ekan, sizning ishtirokingiz biz
@@ -151,7 +158,7 @@
       </p>
     </div>
 
-    <div class="section">
+    <div class="section fade-in">
       <h2>Foto Lavhalar</h2>
       <div class="gallery">
         <img src="./1.jpg" alt="To'y rasmi 1" />
@@ -171,11 +178,40 @@
       </p>
     </div>
 
-    <footer>
+    <footer class="fade-in">
       <p>
         Boirxon & Munisa bilan baxtimizga guvoh bo‘ling — sizsiz bu kun to‘liq
         bo‘lmaydi ❤
       </p>
     </footer>
+
+    <script>
+      // Musiqa autoplay (fallback bilan)
+      window.addEventListener("DOMContentLoaded", function () {
+        const audio = document.querySelector("audio");
+        audio.play().catch(function (error) {
+          console.log("Autoplay bloklandi:", error);
+        });
+      });
+
+      // Scroll animatsiya funksiyasi
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        {
+          threshold: 0.1,
+        }
+      );
+
+      document
+        .querySelectorAll(".fade-in")
+        .forEach((el) => observer.observe(el));
+    </script>
   </body>
 </html>
